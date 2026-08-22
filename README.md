@@ -219,6 +219,8 @@ All measured targets are public-facing endpoints of identifiable organisations. 
 
 ---
 
+
+
 ## Authors
 
 **Jayant Kumar** (corresponding) — conceptualization, implementation, measurement, analysis
@@ -226,4 +228,5 @@ All measured targets are public-facing endpoints of identifiable organisations. 
 
 Department of Computer Applications, Sobhasaria Group of Institutions, Sikar, Rajasthan, India
 
-
+## License
+MIT
