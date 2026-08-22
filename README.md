@@ -1,138 +1,87 @@
-# AegisGuard PQC Scanner v2.0.0
+# AegisGuard
 
-**Quantum-Safe Cryptographic Scanner with Login System & Modular Architecture**
+**An empirical framework for assessing post-quantum readiness in public-facing TLS infrastructure.**
 
-## What's New in v2.0.0
+> *"Measure what you can prove. Never infer what you cannot observe."*
 
-### 1. Login System
-- **Register/Login** with username, email, password
-- **JWT-like token auth** (HMAC-signed, 72h expiry)
-- **Per-user scan history** — every scan is saved when logged in
-- **Profile endpoint** — view your account details and scan count
-- Scans still work without login (just not saved to history)
+AegisGuard is a non-intrusive TLS/PQC measurement tool built around one constraint: a scanner that cannot observe the negotiated key-exchange group must say so, rather than reporting the absence of evidence as evidence of weakness.
 
-### 2. Code Segmentation
-The monolithic 2400-line `app.py` has been split into **15 focused modules**:
+---
 
-```
-AegisGuard_v2/
-├── app.py                    ← Slim entry point (wires routers together)
-├── config.py                 ← All constants, CVE DB, compliance frameworks
-├── database.py               ← SQLite setup (users + scan_history tables)
-│
-├── auth/                     ← Authentication system
-│   ├── utils.py              ← Password hashing, token create/verify
-│   ├── models.py             ← Pydantic models (Register, Login, Profile)
-│   └── routes.py             ← /auth/register, /auth/login, /auth/me
-│
-├── scanner/                  ← Core scanning engine (separated by stage)
-│   ├── tls_probe.py          ← Stage 1: Raw TLS connection + cert parsing
-│   ├── pqc_analyzer.py       ← Stage 2: PQC algorithm detection
-│   ├── risk_scorer.py        ← Stage 3: Weighted risk scoring + grading
-│   ├── cbom_generator.py     ← Stage 4: CycloneDX 1.6 CBOM generation
-│   ├── intelligence.py       ← Stages 5-10: Headers, CVEs, HNDL, compliance
-│   ├── certificate.py        ← PQC compliance certificate PDF generation
-│   └── pipeline.py           ← Full scan orchestrator + UI response builder
-│
-├── routes/                   ← API route handlers
-│   ├── scan.py               ← /scan, /export, /scan/bulk, /cbom, /certificate
-│   └── discovery.py          ← /discover, /report/generate, /report/schedule
-│
-├── scan_history/             ← Scan history persistence
-│   └── routes.py             ← /history (list, view, delete, clear)
-│
-├── frontend/                 ← Updated with login UI + history tab
-│   ├── index.html            ← Added auth modal + scan history tab
-│   ├── script.js             ← Added auth logic + history management
-│   ├── style.css             ← (unchanged)
-│   └── chart.js              ← (unchanged)
-│
-└── requirements.txt
-```
+## Why this exists
 
-## Quick Start
+TLS 1.3 always negotiates a key exchange over some named group, but that group is not exposed by every client API — Python's `ssl` module reports the protocol version and cipher suite but *not* the negotiated group. Tools that fill the gap by inference produce confident and wrong answers:
 
-### Windows PowerShell
+| Inference | Why it's wrong |
+|---|---|
+| `TLS_AES_256_GCM_SHA384` → classical KEX | The cipher suite constrains the AEAD, not the key agreement |
+| RSA-2048 certificate → classical KEX | Certificate algorithm and key exchange are independent |
+| TLS 1.3 negotiated → post-quantum | TLS 1.3 is evidence of neither PQC nor classical |
+| Group not observed → "not quantum-safe" | Absence of evidence, reported as a vulnerability |
 
-```powershell
-py -3.14 -m venv .venv314
-.\.venv314\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-python app.py
-```
+That last row is the failure mode that matters. It inflates vulnerability counts in exactly the direction that makes a tool look valuable, and the result is unfalsifiable because the missing evidence is never surfaced.
 
-### One-line Run (without activation)
+AegisGuard resolves the group from an **independent measurement channel** (the OpenSSL CLI) and classifies it against a fixed table. Anything unobserved, unparsed, or unrecognised becomes `NOT_VERIFIED` — a first-class outcome carrying **zero risk penalty**.
 
-```powershell
-.\.venv314\Scripts\python.exe -u app.py
-```
+---
 
-Then open `http://localhost:8000/`
+## Classification
 
-## API Endpoints
+| Observed group | Class | Confidence |
+|---|---|---|
+| `X25519`, `X448`, `secp256r1`, `secp384r1`, `secp521r1`, `RSA` | `CLASSICAL` | HIGH |
+| `X25519MLKEM768`, `SecP256r1MLKEM768` | `HYBRID_PQC` | HIGH |
+| `MLKEM768`, `MLKEM1024` | `PQC` | HIGH |
+| *absent / unrecognised* | `NOT_VERIFIED` | UNKNOWN |
 
-### Authentication
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/auth/register` | Create new account |
-| POST | `/auth/login` | Login, get token |
-| GET | `/auth/me` | Get profile (requires token) |
+No *harvest-now-decrypt-later* finding is emitted unless a classical group was **positively observed**.
 
-### Scanning
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/scan` | Full PQC scan (auto-saved if logged in) |
-| POST | `/export` | Scan + export JSON |
-| POST | `/scan/bulk` | Multi-target concurrent scan |
-| POST | `/cbom` | Export CBOM |
-| POST | `/certificate` | Generate PQC certificate PDF |
-| POST | `/discover` | Start async discovery job (returns job_id) |
-| GET | `/status/{job_id}` | Discovery job progress + partial status |
-| GET | `/discover/result/{job_id}` | Discovery job final payload |
-| POST | `/discover/sync` | Compatibility blocking discovery (bounded wait) |
+---
 
-### History (requires login)
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/history/` | List your past scans |
-| GET | `/history/{id}` | Full details of a scan |
-| DELETE | `/history/{id}` | Delete a scan |
-| DELETE | `/history/` | Clear all history |
+## Study results
 
-### Reports
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/report/generate` | Multi-target executive report |
-| POST | `/report/schedule` | Schedule recurring reports |
+Two disjoint measurement campaigns, 2026-08-22, from a single vantage in India (OpenSSL 3.5.7, CPython 3.14):
 
-## Authentication Flow
+| | Dataset A (banking) | Dataset B (10 sectors) |
+|---|---|---|
+| Targets | 100 | 300 |
+| Reachable | 98 | 295 |
+| TLS 1.3 | 81.6% | 88.8% |
+| **Hybrid PQC** | **52.0%** | **63.4%** |
+| Hybrid PQC (TLS 1.3 only) | 63.8% | 71.4% |
+| `NOT_VERIFIED` | 48.0% | 36.6% |
+| HSTS present | 50.0% | 58.0% |
+| Expired certificates | 0 | 0 |
 
-1. **Register**: `POST /auth/register` with `{username, email, password}`
-2. **Login**: `POST /auth/login` with `{username, password}`
-3. **Use token**: Add `Authorization: Bearer <token>` header to requests
-4. **Scans auto-save**: When token is present, scans save to your history
-5. **View history**: `GET /history/` shows all your past scans
+**Headline finding — a sectoral gap.** Banking/Financial trails all nine other sectors:
 
-## Tech Stack
-- **Backend**: FastAPI + Uvicorn
-- **Database**: SQLite (zero-config, file-based)
-- **Auth**: SHA-256 + salt password hashing, HMAC-signed tokens
-- **Scanner**: pyOpenSSL, cryptography
-- **PDF**: fpdf2
-- **Frontend**: Vanilla HTML/CSS/JS + Chart.js
+| Sector | Hybrid PQC (reachable) |
+|---|---|
+| Payments/FinTech | 85.3% |
+| Media/Streaming | 73.3% |
+| Browser Ecosystem | 73.3% |
+| E-commerce | 68.9% |
+| Enterprise/SaaS | 63.2% |
+| Social Media | 61.8% |
+| Search/Web Platforms | 55.0% |
+| Cloud/Technology | 52.0% |
+| Retail/Consumer | 50.0% |
+| **Banking/Financial** | **46.9%** |
 
-## Discovery Tuning
+The gap replicates across two disjoint banking samples (52.0% and 46.9%) and survives conditioning on TLS 1.3, so it is not merely protocol lag.
 
-Subdomain discovery coverage is configured in `scanner/enumeration_config.py`.
+Every positively verified group was `X25519MLKEM768`. No `SecP256r1MLKEM768` and no pure ML-KEM group was observed anywhere.
 
-- `SUBDOMAIN_LIMIT`: maximum number of discovered hosts returned.
-- `RECURSION_DEPTH`: supports multi-level subdomains like `dev.test.example.com`.
-- `SUBDOMAIN_WORDLIST`: path to brute-force dictionary (default: `scanner/wordlists/extended_recon_list.txt`).
-- `USE_DNS_BRUTEFORCING`: enable/disable active DNS brute-force mode.
-- `MAX_THREADS`: concurrency level for DNS resolution attempts.
-- `ENABLE_CRTSH_OSINT`: query Certificate Transparency records from crt.sh.
-- `ENABLE_HACKERTARGET_OSINT`: query passive host records from HackerTarget.
-- `OSINT_TIMEOUT_SECONDS` / `OSINT_RETRIES`: timeout and retry behavior for passive APIs.
+---
 
-The `/discover` response includes `discovered_subdomains` and `domains` entries for the full discovered set, not just TLS-reachable hosts.
+## Known limitations — read before reusing the data
+
+These are disclosed in the paper and are not resolved in the released datasets.
+
+**1. No classical group was resolved anywhere (393 reachable observations).**
+Every TLS 1.3 session negotiates *some* group, and 104 TLS 1.3 sessions returned `NOT_VERIFIED` — so this is an instrument property, not a property of the Internet. The likely mechanism: OpenSSL 3.5 offers `X25519MLKEM768` first by default, producing a 1216-byte key share and a ClientHello spanning multiple TCP segments; stacks that assume a single-segment ClientHello reset the probe connection, while the smaller Python `ssl` ClientHello on the first channel succeeds. If so, `NOT_VERIFIED` is a *systematically biased* stratum, not random residue.
+
+**Consequence: hybrid adoption figures are a lower bound, and classical adoption is unmeasured.** Fixing this requires persisting the probe's exit status per endpoint, retrying with `-groups X25519`, and cross-checking against a client that reports the group without a second connection.
+
+**2. Certificate algorithm fields are placeholder constants.**
+`pyOpenSSL`/`cryptography` are in `requirements.txt` but were absent from the environment during both runs, so `tls_probe.py` fell back to a hard-coded `RSA` / `2048` / `sha256WithRSAEncryption (estimated)`. Those columns are uniform across all 393 reachable records and carry no information. They are excluded from all
