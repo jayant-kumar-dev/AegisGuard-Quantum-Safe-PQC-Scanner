@@ -111,7 +111,7 @@ Roughly half of banking endpoints omit a header defending against protocol downg
 
 ---
 
-## ⚠️ Known limitations — read before reusing the data
+##  Known limitations — read before reusing the data
 
 These are disclosed in the paper and **are not resolved** in the released datasets.
 
