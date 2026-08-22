@@ -1,0 +1,301 @@
+id,organization,category,country,domain,port,confidence_note,asset_type
+1,Goldman Sachs,Banking/Financial,US,gs.com,443,HIGH,PUBLIC_WEBSITE
+2,Morgan Stanley,Banking/Financial,US,morganstanley.com,443,HIGH,PUBLIC_WEBSITE
+3,BlackRock,Banking/Financial,US,blackrock.com,443,HIGH,PUBLIC_WEBSITE
+4,Fidelity Investments,Banking/Financial,US,fidelity.com,443,HIGH,PUBLIC_WEBSITE
+5,Charles Schwab,Banking/Financial,US,schwab.com,443,HIGH,PUBLIC_WEBSITE
+6,Vanguard,Banking/Financial,US,vanguard.com,443,HIGH,PUBLIC_WEBSITE
+7,Discover,Banking/Financial,US,discover.com,443,HIGH,PUBLIC_WEBSITE
+8,Ally Bank,Banking/Financial,US,ally.com,443,HIGH,PUBLIC_WEBSITE
+9,Synchrony,Banking/Financial,US,synchrony.com,443,HIGH,PUBLIC_WEBSITE
+10,State Street,Banking/Financial,US,statestreet.com,443,HIGH,PUBLIC_WEBSITE
+11,Northern Trust,Banking/Financial,US,northerntrust.com,443,HIGH,PUBLIC_WEBSITE
+12,Edward Jones,Banking/Financial,US,edwardjones.com,443,HIGH,PUBLIC_WEBSITE
+13,Raymond James,Banking/Financial,US,raymondjames.com,443,HIGH,PUBLIC_WEBSITE
+14,Lazard,Banking/Financial,US,lazard.com,443,HIGH,PUBLIC_WEBSITE
+15,Nomura,Banking/Financial,JP,nomura.com,443,HIGH,PUBLIC_WEBSITE
+16,Rabobank,Banking/Financial,NL,rabobank.com,443,HIGH,PUBLIC_WEBSITE
+17,KBC Group,Banking/Financial,BE,kbc.be,443,HIGH,PUBLIC_WEBSITE
+18,UniCredit,Banking/Financial,IT,unicreditgroup.eu,443,HIGH,PUBLIC_WEBSITE
+19,Intesa Sanpaolo,Banking/Financial,IT,intesasanpaolo.com,443,HIGH,PUBLIC_WEBSITE
+20,Danske Bank,Banking/Financial,DK,danskebank.com,443,HIGH,PUBLIC_WEBSITE
+21,Nordea,Banking/Financial,FI,nordea.com,443,HIGH,PUBLIC_WEBSITE
+22,SEB,Banking/Financial,SE,sebgroup.com,443,HIGH,PUBLIC_WEBSITE
+23,Swedbank,Banking/Financial,SE,swedbank.com,443,HIGH,PUBLIC_WEBSITE
+24,DNB,Banking/Financial,NO,dnb.no,443,HIGH,PUBLIC_WEBSITE
+25,Handelsbanken,Banking/Financial,SE,handelsbanken.com,443,HIGH,PUBLIC_WEBSITE
+26,Raiffeisen Bank International,Banking/Financial,AT,rbinternational.com,443,HIGH,PUBLIC_WEBSITE
+27,PostFinance,Banking/Financial,CH,postfinance.ch,443,HIGH,PUBLIC_WEBSITE
+28,Erste Group,Banking/Financial,AT,erstegroup.com,443,HIGH,PUBLIC_WEBSITE
+29,OTP Bank,Banking/Financial,HU,otpbank.hu,443,HIGH,PUBLIC_WEBSITE
+30,PKO Bank Polski,Banking/Financial,PL,pko.pl,443,HIGH,PUBLIC_WEBSITE
+31,Alior Bank,Banking/Financial,PL,aliorbank.pl,443,HIGH,PUBLIC_WEBSITE
+32,ČSOB,Banking/Financial,CZ,csob.cz,443,HIGH,PUBLIC_WEBSITE
+33,Komercni banka,Banking/Financial,CZ,kb.cz,443,HIGH,PUBLIC_WEBSITE
+34,Bank Pekao,Banking/Financial,PL,pekao.com.pl,443,HIGH,PUBLIC_WEBSITE
+35,Banco Santander Mexico,Banking/Financial,MX,santander.com.mx,443,HIGH,PUBLIC_WEBSITE
+36,Banorte,Banking/Financial,MX,banorte.com,443,HIGH,PUBLIC_WEBSITE
+37,Nu México,Banking/Financial,MX,nu.com.mx,443,REVIEW_DOMAIN,PUBLIC_WEBSITE
+38,Credicorp,Banking/Financial,PE,grupocredicorp.com,443,HIGH,PUBLIC_WEBSITE
+39,Banco de Chile,Banking/Financial,CL,bancochile.cl,443,HIGH,PUBLIC_WEBSITE
+40,BCI,Banking/Financial,CL,bci.cl,443,HIGH,PUBLIC_WEBSITE
+41,Banco do Brasil,Banking/Financial,BR,bb.com.br,443,HIGH,PUBLIC_WEBSITE
+42,Banco de Bogotá,Banking/Financial,CO,bancodebogota.com,443,HIGH,PUBLIC_WEBSITE
+43,Kaspi.kz,Banking/Financial,KZ,kaspi.kz,443,HIGH,PUBLIC_WEBSITE
+44,Halyk Bank,Banking/Financial,KZ,halykbank.kz,443,HIGH,PUBLIC_WEBSITE
+45,Habib Bank Zurich,Banking/Financial,PK,hbl.com,443,HIGH,PUBLIC_WEBSITE
+46,United Bank Limited,Banking/Financial,PK,ubl.com.pk,443,HIGH,PUBLIC_WEBSITE
+47,BRAC Bank,Banking/Financial,BD,bracbank.com,443,HIGH,PUBLIC_WEBSITE
+48,The City Bank,Banking/Financial,BD,thecitybank.com,443,HIGH,PUBLIC_WEBSITE
+49,Bank Rakyat Indonesia,Banking/Financial,ID,bri.co.id,443,HIGH,PUBLIC_WEBSITE
+50,Bank Central Asia,Banking/Financial,ID,bca.co.id,443,HIGH,PUBLIC_WEBSITE
+51,Amazon,E-commerce,US,amazon.com,443,HIGH,PUBLIC_WEBSITE
+52,eBay,E-commerce,US,ebay.com,443,HIGH,PUBLIC_WEBSITE
+53,Walmart,E-commerce,US,walmart.com,443,HIGH,PUBLIC_WEBSITE
+54,Target,E-commerce,US,target.com,443,HIGH,PUBLIC_WEBSITE
+55,Best Buy,E-commerce,US,bestbuy.com,443,HIGH,PUBLIC_WEBSITE
+56,The Home Depot,E-commerce,US,homedepot.com,443,HIGH,PUBLIC_WEBSITE
+57,Lowe's,E-commerce,US,lowes.com,443,HIGH,PUBLIC_WEBSITE
+58,Etsy,E-commerce,US,etsy.com,443,HIGH,PUBLIC_WEBSITE
+59,Wayfair,E-commerce,US,wayfair.com,443,HIGH,PUBLIC_WEBSITE
+60,Shopify,E-commerce,CA,shopify.com,443,HIGH,PUBLIC_WEBSITE
+61,AliExpress,E-commerce,CN,aliexpress.com,443,HIGH,PUBLIC_WEBSITE
+62,Temu,E-commerce,US,temu.com,443,HIGH,PUBLIC_WEBSITE
+63,SHEIN,E-commerce,SG,shein.com,443,HIGH,PUBLIC_WEBSITE
+64,Nike,E-commerce,US,nike.com,443,HIGH,PUBLIC_WEBSITE
+65,Adidas,E-commerce,DE,adidas.com,443,HIGH,PUBLIC_WEBSITE
+66,IKEA,E-commerce,SE,ikea.com,443,HIGH,PUBLIC_WEBSITE
+67,Costco,E-commerce,US,costco.com,443,HIGH,PUBLIC_WEBSITE
+68,Macy's,E-commerce,US,macys.com,443,HIGH,PUBLIC_WEBSITE
+69,Nordstrom,E-commerce,US,nordstrom.com,443,HIGH,PUBLIC_WEBSITE
+70,Kohl's,E-commerce,US,kohls.com,443,HIGH,PUBLIC_WEBSITE
+71,Chewy,E-commerce,US,chewy.com,443,HIGH,PUBLIC_WEBSITE
+72,Zappos,E-commerce,US,zappos.com,443,HIGH,PUBLIC_WEBSITE
+73,ASOS,E-commerce,GB,asos.com,443,HIGH,PUBLIC_WEBSITE
+74,Zalando,E-commerce,DE,zalando.com,443,HIGH,PUBLIC_WEBSITE
+75,JD.com,E-commerce,CN,jd.com,443,HIGH,PUBLIC_WEBSITE
+76,Rakuten,E-commerce,JP,rakuten.co.jp,443,HIGH,PUBLIC_WEBSITE
+77,Mercado Libre,E-commerce,AR,mercadolibre.com,443,HIGH,PUBLIC_WEBSITE
+78,Flipkart,E-commerce,IN,flipkart.com,443,HIGH,PUBLIC_WEBSITE
+79,Myntra,E-commerce,IN,myntra.com,443,HIGH,PUBLIC_WEBSITE
+80,Snapdeal,E-commerce,IN,snapdeal.com,443,HIGH,PUBLIC_WEBSITE
+81,Nykaa,E-commerce,IN,nykaa.com,443,HIGH,PUBLIC_WEBSITE
+82,Meesho,E-commerce,IN,meesho.com,443,HIGH,PUBLIC_WEBSITE
+83,AJIO,E-commerce,IN,ajio.com,443,HIGH,PUBLIC_WEBSITE
+84,Tata CLiQ,E-commerce,IN,tatacliq.com,443,HIGH,PUBLIC_WEBSITE
+85,BigBasket,E-commerce,IN,bigbasket.com,443,HIGH,PUBLIC_WEBSITE
+86,Tesco,E-commerce,GB,tesco.com,443,HIGH,PUBLIC_WEBSITE
+87,Sainsbury's,E-commerce,GB,sainsburys.co.uk,443,HIGH,PUBLIC_WEBSITE
+88,Carrefour,E-commerce,FR,carrefour.com,443,HIGH,PUBLIC_WEBSITE
+89,Lidl,E-commerce,DE,lidl.com,443,HIGH,PUBLIC_WEBSITE
+90,Aldi,E-commerce,DE,aldi.com,443,HIGH,PUBLIC_WEBSITE
+91,Otto,E-commerce,DE,otto.de,443,HIGH,PUBLIC_WEBSITE
+92,Fnac,E-commerce,FR,fnac.com,443,HIGH,PUBLIC_WEBSITE
+93,Decathlon,E-commerce,FR,decathlon.com,443,HIGH,PUBLIC_WEBSITE
+94,Woolworths,E-commerce,AU,woolworths.com.au,443,HIGH,PUBLIC_WEBSITE
+95,Kmart Australia,E-commerce,AU,kmart.com,443,HIGH,PUBLIC_WEBSITE
+96,Bunnings,E-commerce,AU,bunnings.com.au,443,HIGH,PUBLIC_WEBSITE
+97,Harvey Norman,E-commerce,AU,harveynorman.com.au,443,HIGH,PUBLIC_WEBSITE
+98,Lazada,E-commerce,SG,lazada.sg,443,HIGH,PUBLIC_WEBSITE
+99,Shopee,E-commerce,SG,shopee.com,443,HIGH,PUBLIC_WEBSITE
+100,Tokopedia,E-commerce,ID,tokopedia.com,443,HIGH,PUBLIC_WEBSITE
+101,Bukalapak,E-commerce,ID,bukalapak.com,443,HIGH,PUBLIC_WEBSITE
+102,Coupang,E-commerce,KR,coupang.com,443,HIGH,PUBLIC_WEBSITE
+103,Gmarket,E-commerce,KR,gmarket.co.kr,443,HIGH,PUBLIC_WEBSITE
+104,Noon,E-commerce,AE,noon.com,443,HIGH,PUBLIC_WEBSITE
+105,Namshi,E-commerce,AE,namshi.com,443,HIGH,PUBLIC_WEBSITE
+106,Jarir,E-commerce,SA,jarir.com,443,HIGH,PUBLIC_WEBSITE
+107,Extra Stores,E-commerce,SA,extra.com,443,HIGH,PUBLIC_WEBSITE
+108,Takealot,E-commerce,ZA,takealot.com,443,HIGH,PUBLIC_WEBSITE
+109,Jumia,E-commerce,NG,jumia.com.ng,443,HIGH,PUBLIC_WEBSITE
+110,Konga,E-commerce,NG,konga.com,443,HIGH,PUBLIC_WEBSITE
+111,Falabella,E-commerce,CL,falabella.com,443,HIGH,PUBLIC_WEBSITE
+112,Ripley,E-commerce,CL,ripley.cl,443,HIGH,PUBLIC_WEBSITE
+113,Dafiti,E-commerce,BR,dafiti.com.br,443,HIGH,PUBLIC_WEBSITE
+114,Cdiscount,E-commerce,FR,cdiscount.com,443,HIGH,PUBLIC_WEBSITE
+115,Vinted,E-commerce,LT,vinted.com,443,HIGH,PUBLIC_WEBSITE
+116,Depop,E-commerce,GB,depop.com,443,HIGH,PUBLIC_WEBSITE
+117,Poshmark,E-commerce,US,poshmark.com,443,HIGH,PUBLIC_WEBSITE
+118,Mercari,E-commerce,JP,mercari.com,443,HIGH,PUBLIC_WEBSITE
+119,StockX,E-commerce,US,stockx.com,443,HIGH,PUBLIC_WEBSITE
+120,GOAT,E-commerce,US,goat.com,443,HIGH,PUBLIC_WEBSITE
+121,SSENSE,E-commerce,CA,ssense.com,443,HIGH,PUBLIC_WEBSITE
+122,Farfetch,E-commerce,GB,farfetch.com,443,HIGH,PUBLIC_WEBSITE
+123,Mr Porter,E-commerce,GB,mrporter.com,443,HIGH,PUBLIC_WEBSITE
+124,Newegg,E-commerce,US,newegg.com,443,HIGH,PUBLIC_WEBSITE
+125,Overstock,E-commerce,US,overstock.com,443,HIGH,PUBLIC_WEBSITE
+126,PayPal,Payments/FinTech,US,paypal.com,443,HIGH,PUBLIC_WEBSITE
+127,Stripe,Payments/FinTech,US,stripe.com,443,HIGH,PUBLIC_WEBSITE
+128,Square,Payments/FinTech,US,squareup.com,443,HIGH,PUBLIC_WEBSITE
+129,Block,Payments/FinTech,US,block.xyz,443,HIGH,PUBLIC_WEBSITE
+130,Adyen,Payments/FinTech,NL,adyen.com,443,HIGH,PUBLIC_WEBSITE
+131,Checkout.com,Payments/FinTech,GB,checkout.com,443,HIGH,PUBLIC_WEBSITE
+132,Wise,Payments/FinTech,GB,wise.com,443,HIGH,PUBLIC_WEBSITE
+133,Revolut,Payments/FinTech,GB,revolut.com,443,HIGH,PUBLIC_WEBSITE
+134,Monzo,Payments/FinTech,GB,monzo.com,443,HIGH,PUBLIC_WEBSITE
+135,Chime,Payments/FinTech,US,chime.com,443,HIGH,PUBLIC_WEBSITE
+136,Robinhood,Payments/FinTech,US,robinhood.com,443,HIGH,PUBLIC_WEBSITE
+137,Coinbase,Payments/FinTech,US,coinbase.com,443,HIGH,PUBLIC_WEBSITE
+138,Kraken,Payments/FinTech,US,kraken.com,443,HIGH,PUBLIC_WEBSITE
+139,Binance,Payments/FinTech,MT,binance.com,443,HIGH,PUBLIC_WEBSITE
+140,Paytm,Payments/FinTech,IN,paytm.com,443,HIGH,PUBLIC_WEBSITE
+141,PhonePe,Payments/FinTech,IN,phonepe.com,443,HIGH,PUBLIC_WEBSITE
+142,Razorpay,Payments/FinTech,IN,razorpay.com,443,HIGH,PUBLIC_WEBSITE
+143,PayU,Payments/FinTech,NL,payu.com,443,HIGH,PUBLIC_WEBSITE
+144,M-Pesa,Payments/FinTech,KE,safaricom.co.ke,443,HIGH,PUBLIC_WEBSITE
+145,Flutterwave,Payments/FinTech,NG,flutterwave.com,443,HIGH,PUBLIC_WEBSITE
+146,Paystack,Payments/FinTech,NG,paystack.com,443,HIGH,PUBLIC_WEBSITE
+147,Remitly,Payments/FinTech,US,remitly.com,443,HIGH,PUBLIC_WEBSITE
+148,Western Union,Payments/FinTech,US,westernunion.com,443,HIGH,PUBLIC_WEBSITE
+149,MoneyGram,Payments/FinTech,US,moneygram.com,443,HIGH,PUBLIC_WEBSITE
+150,Affirm,Payments/FinTech,US,affirm.com,443,HIGH,PUBLIC_WEBSITE
+151,Klarna,Payments/FinTech,SE,klarna.com,443,HIGH,PUBLIC_WEBSITE
+152,Afterpay,Payments/FinTech,AU,afterpay.com,443,HIGH,PUBLIC_WEBSITE
+153,Zip,Payments/FinTech,AU,zip.co,443,HIGH,PUBLIC_WEBSITE
+154,Marqeta,Payments/FinTech,US,marqeta.com,443,HIGH,PUBLIC_WEBSITE
+155,dLocal,Payments/FinTech,UY,dlocal.com,443,HIGH,PUBLIC_WEBSITE
+156,N26,Payments/FinTech,DE,n26.com,443,HIGH,PUBLIC_WEBSITE
+157,Nubank,Payments/FinTech,BR,nubank.com.br,443,HIGH,PUBLIC_WEBSITE
+158,Payoneer,Payments/FinTech,US,payoneer.com,443,HIGH,PUBLIC_WEBSITE
+159,Worldpay,Payments/FinTech,US,worldpay.com,443,HIGH,PUBLIC_WEBSITE
+160,Sendwave,Payments/FinTech,US,sendwave.com,443,HIGH,PUBLIC_WEBSITE
+161,Facebook,Social Media,US,facebook.com,443,HIGH,PUBLIC_WEBSITE
+162,Instagram,Social Media,US,instagram.com,443,HIGH,PUBLIC_WEBSITE
+163,WhatsApp,Social Media,US,whatsapp.com,443,HIGH,PUBLIC_WEBSITE
+164,Messenger,Social Media,US,messenger.com,443,HIGH,PUBLIC_WEBSITE
+165,Threads,Social Media,US,threads.net,443,HIGH,PUBLIC_WEBSITE
+166,TikTok,Social Media,SG,tiktok.com,443,HIGH,PUBLIC_WEBSITE
+167,Lemon8,Social Media,SG,lemon8-app.com,443,REVIEW_DOMAIN,PUBLIC_WEBSITE
+168,X,Social Media,US,x.com,443,HIGH,PUBLIC_WEBSITE
+169,LinkedIn,Social Media,US,linkedin.com,443,HIGH,PUBLIC_WEBSITE
+170,Reddit,Social Media,US,reddit.com,443,HIGH,PUBLIC_WEBSITE
+171,Pinterest,Social Media,US,pinterest.com,443,HIGH,PUBLIC_WEBSITE
+172,Snapchat,Social Media,US,snapchat.com,443,HIGH,PUBLIC_WEBSITE
+173,Discord,Social Media,US,discord.com,443,HIGH,PUBLIC_WEBSITE
+174,Telegram,Social Media,AE,telegram.org,443,HIGH,PUBLIC_WEBSITE
+175,Signal,Social Media,US,signal.org,443,HIGH,PUBLIC_WEBSITE
+176,Quora,Social Media,US,quora.com,443,HIGH,PUBLIC_WEBSITE
+177,Tumblr,Social Media,US,tumblr.com,443,HIGH,PUBLIC_WEBSITE
+178,Flickr,Social Media,US,flickr.com,443,HIGH,PUBLIC_WEBSITE
+179,Weibo,Social Media,CN,weibo.com,443,HIGH,PUBLIC_WEBSITE
+180,WeChat,Social Media,CN,wechat.com,443,HIGH,PUBLIC_WEBSITE
+181,QQ,Social Media,CN,qq.com,443,HIGH,PUBLIC_WEBSITE
+182,LINE,Social Media,JP,line.me,443,HIGH,PUBLIC_WEBSITE
+183,Kakao,Social Media,KR,kakao.com,443,HIGH,PUBLIC_WEBSITE
+184,naver cafe,Social Media,KR,naver.com,443,HIGH,PUBLIC_WEBSITE
+185,VK,Social Media,RU,vk.com,443,HIGH,PUBLIC_WEBSITE
+186,OK.ru,Social Media,RU,ok.ru,443,HIGH,PUBLIC_WEBSITE
+187,Mastodon,Social Media,US,mastodon.social,443,HIGH,PUBLIC_WEBSITE
+188,Bluesky,Social Media,US,bsky.app,443,HIGH,PUBLIC_WEBSITE
+189,Clubhouse,Social Media,US,joinclubhouse.com,443,HIGH,PUBLIC_WEBSITE
+190,Nextdoor,Social Media,US,nextdoor.com,443,HIGH,PUBLIC_WEBSITE
+191,Meetup,Social Media,US,meetup.com,443,HIGH,PUBLIC_WEBSITE
+192,Stack Overflow,Social Media,US,stackoverflow.com,443,HIGH,PUBLIC_WEBSITE
+193,GitHub,Social Media,US,github.com,443,HIGH,PUBLIC_WEBSITE
+194,GitLab,Social Media,US,gitlab.com,443,HIGH,PUBLIC_WEBSITE
+195,Bitbucket,Social Media,AU,bitbucket.org,443,HIGH,PUBLIC_WEBSITE
+196,Google,Search/Web Platforms,US,google.com,443,HIGH,PUBLIC_WEBSITE
+197,Bing,Search/Web Platforms,US,bing.com,443,HIGH,PUBLIC_WEBSITE
+198,Yahoo,Search/Web Platforms,US,yahoo.com,443,HIGH,PUBLIC_WEBSITE
+199,DuckDuckGo,Search/Web Platforms,US,duckduckgo.com,443,HIGH,PUBLIC_WEBSITE
+200,Baidu,Search/Web Platforms,CN,baidu.com,443,HIGH,PUBLIC_WEBSITE
+201,Yandex,Search/Web Platforms,RU,yandex.com,443,HIGH,PUBLIC_WEBSITE
+202,WolframAlpha,Search/Web Platforms,US,wolframalpha.com,443,HIGH,PUBLIC_WEBSITE
+203,Ask.com,Search/Web Platforms,US,ask.com,443,HIGH,PUBLIC_WEBSITE
+204,AOL,Search/Web Platforms,US,aol.com,443,HIGH,PUBLIC_WEBSITE
+205,Brave Search,Search/Web Platforms,US,search.brave.com,443,HIGH,PUBLIC_WEBSITE
+206,Internet Archive,Search/Web Platforms,US,archive.org,443,HIGH,PUBLIC_WEBSITE
+207,Wikipedia,Search/Web Platforms,US,wikipedia.org,443,HIGH,PUBLIC_WEBSITE
+208,Wikimedia,Search/Web Platforms,US,wikimedia.org,443,HIGH,PUBLIC_WEBSITE
+209,Wayback Machine,Search/Web Platforms,US,web.archive.org,443,HIGH,PUBLIC_WEBSITE
+210,Startpage,Search/Web Platforms,NL,startpage.com,443,HIGH,PUBLIC_WEBSITE
+211,Ecosia,Search/Web Platforms,DE,ecosia.org,443,HIGH,PUBLIC_WEBSITE
+212,Qwant,Search/Web Platforms,FR,qwant.com,443,HIGH,PUBLIC_WEBSITE
+213,Swisscows,Search/Web Platforms,CH,swisscows.com,443,HIGH,PUBLIC_WEBSITE
+214,Mojeek,Search/Web Platforms,GB,mojeek.com,443,HIGH,PUBLIC_WEBSITE
+215,Perplexity,Search/Web Platforms,US,perplexity.ai,443,HIGH,PUBLIC_WEBSITE
+216,Amazon Web Services,Cloud/Technology,US,aws.amazon.com,443,HIGH,PUBLIC_WEBSITE
+217,Microsoft Azure,Cloud/Technology,US,azure.microsoft.com,443,HIGH,PUBLIC_WEBSITE
+218,Google Cloud,Cloud/Technology,US,cloud.google.com,443,HIGH,PUBLIC_WEBSITE
+219,Oracle Cloud,Cloud/Technology,US,oracle.com,443,HIGH,PUBLIC_WEBSITE
+220,IBM Cloud,Cloud/Technology,US,ibm.com,443,HIGH,PUBLIC_WEBSITE
+221,Alibaba Cloud,Cloud/Technology,CN,alibabacloud.com,443,HIGH,PUBLIC_WEBSITE
+222,DigitalOcean,Cloud/Technology,US,digitalocean.com,443,HIGH,PUBLIC_WEBSITE
+223,Cloudflare,Cloud/Technology,US,cloudflare.com,443,HIGH,PUBLIC_WEBSITE
+224,Akamai,Cloud/Technology,US,akamai.com,443,HIGH,PUBLIC_WEBSITE
+225,Fastly,Cloud/Technology,US,fastly.com,443,HIGH,PUBLIC_WEBSITE
+226,Docker,Cloud/Technology,US,docker.com,443,HIGH,PUBLIC_WEBSITE
+227,Heroku,Cloud/Technology,US,heroku.com,443,HIGH,PUBLIC_WEBSITE
+228,Render,Cloud/Technology,US,render.com,443,HIGH,PUBLIC_WEBSITE
+229,Vercel,Cloud/Technology,US,vercel.com,443,HIGH,PUBLIC_WEBSITE
+230,Netlify,Cloud/Technology,US,netlify.com,443,HIGH,PUBLIC_WEBSITE
+231,Linode,Cloud/Technology,US,linode.com,443,HIGH,PUBLIC_WEBSITE
+232,Vultr,Cloud/Technology,US,vultr.com,443,HIGH,PUBLIC_WEBSITE
+233,OVHcloud,Cloud/Technology,FR,ovhcloud.com,443,HIGH,PUBLIC_WEBSITE
+234,Hetzner,Cloud/Technology,DE,hetzner.com,443,HIGH,PUBLIC_WEBSITE
+235,VMware,Cloud/Technology,US,vmware.com,443,HIGH,PUBLIC_WEBSITE
+236,Red Hat,Cloud/Technology,US,redhat.com,443,HIGH,PUBLIC_WEBSITE
+237,Canonical,Cloud/Technology,GB,canonical.com,443,HIGH,PUBLIC_WEBSITE
+238,Elastic,Cloud/Technology,US,elastic.co,443,HIGH,PUBLIC_WEBSITE
+239,Datadog,Cloud/Technology,US,datadoghq.com,443,HIGH,PUBLIC_WEBSITE
+240,New Relic,Cloud/Technology,US,newrelic.com,443,HIGH,PUBLIC_WEBSITE
+241,Google Chrome,Browser Ecosystem,US,chromeenterprise.google,443,REVIEW_DOMAIN,PUBLIC_WEBSITE
+242,Microsoft Edge,Browser Ecosystem,US,microsoft.com,443,REVIEW_SHARED_DOMAIN,PUBLIC_WEBSITE
+243,Mozilla Firefox,Browser Ecosystem,US,mozilla.org,443,HIGH,PUBLIC_WEBSITE
+244,Apple Safari,Browser Ecosystem,US,apple.com,443,REVIEW_SHARED_DOMAIN,PUBLIC_WEBSITE
+245,Brave Browser,Browser Ecosystem,US,brave.com,443,HIGH,PUBLIC_WEBSITE
+246,Opera Browser,Browser Ecosystem,NO,opera.com,443,HIGH,PUBLIC_WEBSITE
+247,Vivaldi Browser,Browser Ecosystem,NO,vivaldi.com,443,HIGH,PUBLIC_WEBSITE
+248,Arc Browser,Browser Ecosystem,US,arc.net,443,HIGH,PUBLIC_WEBSITE
+249,Tor Project,Browser Ecosystem,US,torproject.org,443,HIGH,PUBLIC_WEBSITE
+250,Chromium,Browser Ecosystem,US,chromium.org,443,HIGH,PUBLIC_WEBSITE
+251,Waterfox,Browser Ecosystem,GB,waterfox.net,443,HIGH,PUBLIC_WEBSITE
+252,LibreWolf,Browser Ecosystem,DE,librewolf.net,443,HIGH,PUBLIC_WEBSITE
+253,Maxthon,Browser Ecosystem,SG,maxthon.com,443,HIGH,PUBLIC_WEBSITE
+254,UC Browser,Browser Ecosystem,CN,ucweb.com,443,HIGH,PUBLIC_WEBSITE
+255,SRWare Iron,Browser Ecosystem,DE,srware.net,443,HIGH,PUBLIC_WEBSITE
+256,Netflix,Media/Streaming,US,netflix.com,443,HIGH,PUBLIC_WEBSITE
+257,YouTube,Media/Streaming,US,youtube.com,443,HIGH,PUBLIC_WEBSITE
+258,Spotify,Media/Streaming,SE,spotify.com,443,HIGH,PUBLIC_WEBSITE
+259,Disney+,Media/Streaming,US,disneyplus.com,443,HIGH,PUBLIC_WEBSITE
+260,Amazon Prime Video,Media/Streaming,US,primevideo.com,443,HIGH,PUBLIC_WEBSITE
+261,Hulu,Media/Streaming,US,hulu.com,443,HIGH,PUBLIC_WEBSITE
+262,Max,Media/Streaming,US,max.com,443,HIGH,PUBLIC_WEBSITE
+263,Paramount+,Media/Streaming,US,paramountplus.com,443,HIGH,PUBLIC_WEBSITE
+264,Peacock,Media/Streaming,US,peacocktv.com,443,HIGH,PUBLIC_WEBSITE
+265,Twitch,Media/Streaming,US,twitch.tv,443,HIGH,PUBLIC_WEBSITE
+266,SoundCloud,Media/Streaming,DE,soundcloud.com,443,HIGH,PUBLIC_WEBSITE
+267,Deezer,Media/Streaming,FR,deezer.com,443,HIGH,PUBLIC_WEBSITE
+268,TIDAL,Media/Streaming,US,tidal.com,443,HIGH,PUBLIC_WEBSITE
+269,BBC,Media/Streaming,GB,bbc.com,443,HIGH,PUBLIC_WEBSITE
+270,The Guardian,Media/Streaming,GB,theguardian.com,443,HIGH,PUBLIC_WEBSITE
+271,Salesforce,Enterprise/SaaS,US,salesforce.com,443,HIGH,PUBLIC_WEBSITE
+272,ServiceNow,Enterprise/SaaS,US,servicenow.com,443,HIGH,PUBLIC_WEBSITE
+273,SAP,Enterprise/SaaS,DE,sap.com,443,HIGH,PUBLIC_WEBSITE
+274,Workday,Enterprise/SaaS,US,workday.com,443,HIGH,PUBLIC_WEBSITE
+275,Atlassian,Enterprise/SaaS,AU,atlassian.com,443,HIGH,PUBLIC_WEBSITE
+276,Slack,Enterprise/SaaS,US,slack.com,443,HIGH,PUBLIC_WEBSITE
+277,Zoom,Enterprise/SaaS,US,zoom.us,443,HIGH,PUBLIC_WEBSITE
+278,DocuSign,Enterprise/SaaS,US,docusign.com,443,HIGH,PUBLIC_WEBSITE
+279,Dropbox,Enterprise/SaaS,US,dropbox.com,443,HIGH,PUBLIC_WEBSITE
+280,Box,Enterprise/SaaS,US,box.com,443,HIGH,PUBLIC_WEBSITE
+281,HubSpot,Enterprise/SaaS,US,hubspot.com,443,HIGH,PUBLIC_WEBSITE
+282,Adobe,Enterprise/SaaS,US,adobe.com,443,HIGH,PUBLIC_WEBSITE
+283,Intuit,Enterprise/SaaS,US,intuit.com,443,HIGH,PUBLIC_WEBSITE
+284,QuickBooks,Enterprise/SaaS,US,quickbooks.intuit.com,443,HIGH,PUBLIC_WEBSITE
+285,Notion,Enterprise/SaaS,US,notion.so,443,HIGH,PUBLIC_WEBSITE
+286,Asana,Enterprise/SaaS,US,asana.com,443,HIGH,PUBLIC_WEBSITE
+287,Trello,Enterprise/SaaS,US,trello.com,443,HIGH,PUBLIC_WEBSITE
+288,Monday.com,Enterprise/SaaS,IL,monday.com,443,HIGH,PUBLIC_WEBSITE
+289,Canva,Enterprise/SaaS,AU,canva.com,443,HIGH,PUBLIC_WEBSITE
+290,Zendesk,Enterprise/SaaS,US,zendesk.com,443,HIGH,PUBLIC_WEBSITE
+291,Coca-Cola,Retail/Consumer,US,coca-cola.com,443,HIGH,PUBLIC_WEBSITE
+292,PepsiCo,Retail/Consumer,US,pepsico.com,443,HIGH,PUBLIC_WEBSITE
+293,Unilever,Retail/Consumer,GB,unilever.com,443,HIGH,PUBLIC_WEBSITE
+294,Procter & Gamble,Retail/Consumer,US,pg.com,443,HIGH,PUBLIC_WEBSITE
+295,Colgate-Palmolive,Retail/Consumer,US,colgatepalmolive.com,443,HIGH,PUBLIC_WEBSITE
+296,Reckitt,Retail/Consumer,GB,reckitt.com,443,HIGH,PUBLIC_WEBSITE
+297,Danone,Retail/Consumer,FR,danone.com,443,HIGH,PUBLIC_WEBSITE
+298,Nestlé,Retail/Consumer,CH,nestle.com,443,HIGH,PUBLIC_WEBSITE
+299,Mondelez,Retail/Consumer,US,mondelezinternational.com,443,HIGH,PUBLIC_WEBSITE
+300,L'Oréal,Retail/Consumer,FR,loreal.com,443,HIGH,PUBLIC_WEBSITE

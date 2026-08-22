@@ -1,0 +1,101 @@
+﻿domain,port,bank_name,country
+hdfcbank.com,443,HDFC Bank,IN
+icicibank.com,443,ICICI Bank,IN
+sbi.co.in,443,State Bank of India,IN
+axisbank.com,443,Axis Bank,IN
+kotak.com,443,Kotak Mahindra Bank,IN
+indusind.com,443,IndusInd Bank,IN
+yesbank.in,443,Yes Bank,IN
+bankofbaroda.in,443,Bank of Baroda,IN
+pnbindia.in,443,Punjab National Bank,IN
+canarabank.com,443,Canara Bank,IN
+unionbankofindia.co.in,443,Union Bank of India,IN
+bankofindia.co.in,443,Bank of India,IN
+indianbank.in,443,Indian Bank,IN
+bankofmaharashtra.bank.in,443,Bank of Maharashtra,IN
+uco.bank.in,443,UCO Bank,IN
+iob.in,443,Indian Overseas Bank,IN
+centralbankofindia.co.in,443,Central Bank of India,IN
+idbibank.in,443,IDBI Bank,IN
+idfcfirstbank.com,443,IDFC FIRST Bank,IN
+federalbank.co.in,443,Federal Bank,IN
+rblbank.com,443,RBL Bank,IN
+southindianbank.com,443,South Indian Bank,IN
+kvb.bank.in,443,Karur Vysya Bank,IN
+cityunionbank.com,443,City Union Bank,IN
+dhanbank.com,443,Dhanlaxmi Bank,IN
+tmbnet.in,443,Tamilnad Mercantile Bank,IN
+karnatakabank.com,443,Karnataka Bank,IN
+csb.co.in,443,CSB Bank,IN
+jkb.bank.in,443,Jammu and Kashmir Bank,IN
+bandhanbank.com,443,Bandhan Bank,IN
+au.bank.in,443,AU Small Finance Bank,IN
+equitasbank.com,443,Equitas Small Finance Bank,IN
+ujjivansfb.in,443,Ujjivan Small Finance Bank,IN
+esaf.bank.in,443,ESAF Small Finance Bank,IN
+jupiter.money,443,Jupiter,IN
+chase.com,443,JPMorgan Chase,US
+bankofamerica.com,443,Bank of America,US
+wellsfargo.com,443,Wells Fargo,US
+citi.com,443,Citigroup,US
+usbank.com,443,U.S. Bank,US
+pnc.com,443,PNC Bank,US
+capitalone.com,443,Capital One,US
+truist.com,443,Truist,US
+fifththird.com,443,Fifth Third Bank,US
+regions.com,443,Regions Bank,US
+key.com,443,KeyBank,US
+citizensbank.com,443,Citizens Bank,US
+huntington.com,443,Huntington Bank,US
+td.com,443,TD Bank,CA
+rbcroyalbank.com,443,Royal Bank of Canada,CA
+bmo.com,443,Bank of Montreal,CA
+cibc.com,443,CIBC,CA
+scotiabank.com,443,Scotiabank,CA
+hsbc.com,443,HSBC,GB
+barclays.co.uk,443,Barclays,GB
+lloydsbank.com,443,Lloyds Bank,GB
+natwest.com,443,NatWest,GB
+santander.com,443,Santander,ES
+deutsche-bank.de,443,Deutsche Bank,DE
+commerzbank.de,443,Commerzbank,DE
+ing.com,443,ING,NL
+bbva.com,443,BBVA,ES
+bnpparibas.com,443,BNP Paribas,FR
+credit-agricole.com,443,Credit Agricole,FR
+societegenerale.com,443,Societe Generale,FR
+ubs.com,443,UBS,CH
+juliusbaer.com,443,Julius Baer,CH
+standardbank.co.za,443,Standard Bank,ZA
+absa.co.za,443,Absa Bank,ZA
+nedbank.co.za,443,Nedbank,ZA
+capitecbank.co.za,443,Capitec Bank,ZA
+bankofchina.com,443,Bank of China,CN
+icbc-ltd.com,443,Industrial and Commercial Bank of China,CN
+ccb.com,443,China Construction Bank,CN
+gtbank.com,443,Guaranty Trust Bank,NG
+mufg.jp,443,MUFG Bank,JP
+mizuho-fg.co.jp,443,Mizuho Bank,JP
+smbc.co.jp,443,SMBC Bank,JP
+dbs.com.sg,443,DBS Bank,SG
+ocbc.com,443,OCBC Bank,SG
+uob.com.sg,443,United Overseas Bank,SG
+maybank.com,443,Maybank,MY
+cimb.com,443,CIMB Bank,MY
+kasikornbank.com,443,Kasikornbank,TH
+bangkokbank.com,443,Bangkok Bank,TH
+commbank.com.au,443,Commonwealth Bank,AU
+nab.com.au,443,National Australia Bank,AU
+anz.com,443,ANZ,AU
+westpac.com.au,443,Westpac,AU
+emiratesnbd.com,443,Emirates NBD,AE
+adcb.com,443,Abu Dhabi Commercial Bank,AE
+mashreq.com,443,Mashreq,AE
+qnb.com,443,Qatar National Bank,QA
+riyadbank.com,443,Riyad Bank,SA
+alrajhibank.com.sa,443,Al Rajhi Bank,SA
+bankmuscat.com,443,Bank Muscat,OM
+bancolombia.com,443,Bancolombia,CO
+itau.com.br,443,Itau Unibanco,BR
+bradesco.com.br,443,Bradesco,BR
+santander.com.br,443,Santander Brasil,BR

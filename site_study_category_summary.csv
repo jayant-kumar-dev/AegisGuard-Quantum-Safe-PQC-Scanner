@@ -1,0 +1,11 @@
+category,total,reachable,tls_1_2_count,tls_1_3_count,classical_count,hybrid_pqc_count,pqc_count,not_verified_count,hsts_missing_count,expired_certificate_count,average_risk_score,average_risk_score_reachable_only
+Banking/Financial,50,49,9,40,0,23,0,27,27,0,90.0,91.84
+Browser Ecosystem,15,15,1,14,0,11,0,4,7,0,92.73,92.73
+Cloud/Technology,25,25,4,21,0,13,0,12,6,0,92.96,92.96
+E-commerce,75,74,10,64,0,51,0,24,40,0,90.81,92.04
+Enterprise/SaaS,20,19,0,19,0,12,0,8,8,0,89.25,93.95
+Media/Streaming,15,15,0,15,0,11,0,4,5,0,93.93,93.93
+Payments/FinTech,35,34,1,33,0,29,0,6,9,0,90.8,93.47
+Retail/Consumer,10,10,3,7,0,5,0,5,6,0,91.6,91.6
+Search/Web Platforms,20,20,1,19,0,11,0,9,10,0,93.8,93.8
+Social Media,35,34,4,30,0,21,0,14,11,0,88.8,91.41

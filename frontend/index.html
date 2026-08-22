@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>AegisGuard® | Quantum-Safe PQC Scanner</title>
+		<link rel="stylesheet" href="style.css?v=20260428-4">
+		<link rel="stylesheet" href="font.css?v=20260428-4">
+		<script src="chart.js?v=20260428-4"></script>
+		<script src="script.js?v=20260515-5" defer=""></script>
+	</head>
+	<body>
+		
+		<!-- TOP NAV -->
+		<div class="top-nav">
+			<div class="nav-left">
+				<span class="brand">AegisGuard®
+					<span>|</span>
+					Quantum-Safe PQC Scanner</span>
+			</div>
+			<div style="display:flex;align-items:center;gap:16px">
+				<div class="live-pill" style="font-size: 20px;">
+					<div class="live-dot"></div>
+					LIVE</div>
+				<div class="nav-right" id="authArea"></div>
+			</div>
+		</div>
+		<!-- AUTH GATE -->
+		<div id="authGate" class="auth-gate" style="display:none">
+			<div class="auth-panel auth-panel-left">
+				<div class="auth-brand">AegisGuard®</div>
+				<div class="auth-title">Quantum-Safe Security Starts Here</div>
+				<div class="auth-subtitle">Real-time TLS intelligence, cryptographic risk scoring, CBOM export, and PQC readiness assurance from a single control surface.</div>
+				<div class="auth-badges">
+					<span class="ibm-badge pqc">NIST FIPS 203</span>
+					<span class="ibm-badge nist">NIST FIPS 204</span>
+					<span class="ibm-badge live-badge">NIST FIPS 205</span>
+				</div>
+				<ul class="auth-feature-list">
+					<li>Live TLS probe with validation confidence</li>
+					<li>PQC migration scoring with penalty math</li>
+					<li>Executive, scheduled, and on-demand reporting</li>
+					<li>CBOM generation and certificate checks</li>
+				</ul>
+				<div id="loginBackendStatus" class="auth-backend-indicator">Checking backend...</div>
+			</div>
+			<div class="auth-panel auth-panel-right">
+				<div class="auth-card">
+					<div class="auth-card-head">
+						<button type="button" id="authLoginTab" class="auth-tab-btn active" onclick="toggleAuthForm('login')">Login</button>
+						<button type="button" id="authRegisterTab" class="auth-tab-btn" onclick="toggleAuthForm('register')">Register</button>
+					</div>
+					<div id="authError" class="auth-state auth-state-error" style="display:none"></div>
+					<div id="authSuccess" class="auth-state auth-state-success" style="display:none"></div>
+					<form id="loginForm">
+						<div class="auth-field"><label>Username</label><input type="text" id="loginUser" class="target-input auth-input"></div>
+						<div class="auth-field"><label>Password</label><input type="password" id="loginPass" class="target-input auth-input"></div>
+						<button type="submit" class="btn-blue auth-submit">Sign In</button>
+					</form>
+					<form id="registerForm" style="display:none">
+						<div class="auth-field"><label>Username</label><input type="text" id="regUser" class="target-input auth-input"></div>
+						<div class="auth-field"><label>Email</label><input type="email" id="regEmail" class="target-input auth-input"></div>
+						<div class="auth-field"><label>Full Name</label><input type="text" id="regName" class="target-input auth-input"></div>
+						<div class="auth-field"><label>Organization</label><input type="text" id="regOrg" class="target-input auth-input"></div>
+						<div class="auth-field"><label>Password</label><input type="password" id="regPass" class="target-input auth-input"></div>
+						<button type="submit" class="btn-blue auth-submit">Create Account</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<!-- PAGE HEADER -->
+		<div class="page-header">
+			<h1 class="page-title">Quantum-Safe
+				<span>PQC</span>
+				Website Scanner</h1>
+			<p class="page-subtext">
+				<span>·</span>
+				<span>Real-time TLS cryptographic audit</span>
+				<span></span>
+				<span></span>
+				<span>·</span>
+				<span>CBOM Generation</span>
+				<span></span>
+				<span></span>
+				<span>·</span>
+				<span>PQC Certificate Issuance</span>
+				<span></span>
+				<span></span>
+				<span>·</span>
+				<span>Banking-Grade Security</span>
+			</p>
+			<div class="badge-row">
+				<span class="ibm-badge pqc">NIST FIPS 203/204/205</span><span></span>
+				<span class="ibm-badge nist">ML-KEM · ML-DSA · SLH-DSA</span><span></span>
+				<span class="ibm-badge live-badge">LIVE BACKEND SCAN</span><span></span>
+				<span class="ibm-badge cbom-badge">CBOM GENERATOR</span><span></span>
+				<span id="backendStatus" class="ibm-badge backend-check">⟳ CHECKING...</span><span></span>
+			</div>
+		</div>
+		
+		<!-- TABS -->
+		<div class="tab-bar">
+			<button class="tab active"style="font-size: 18px;" onclick="switchTab('scan',this)">🔍 Single Scan</button>
+			<button class="tab"style="font-size: 18px;" onclick="switchTab('bulk',this)"> Bulk Scan</button>
+			<button class="tab" style="font-size: 18px;" onclick="switchTab('discovery',this)"> Asset Discovery</button>
+			<button class="tab" style="font-size: 18px;" onclick="switchTab('cbom',this)"> CBOM Export</button>
+			<button class="tab" style="font-size: 18px;" onclick="switchTab('cert',this)">🏆 PQC Certificate</button>
+			<button class="tab" style="font-size: 18px;" onclick="switchTab('reporting',this)">Reporting</button>
+			<button class="tab" style="font-size: 18px;" onclick="switchTab('history',this)">📋 Scan History</button>
+		</div>
+		
+		<!-- TAB: SINGLE SCAN -->
+		<div id="tab-scan" class="tab-content active">
+			<div class="control-bar">
+				<div class="control-top">
+					<div class="view-dropdown">
+						<span style="font-size:10px">
+						</span>
+					</div>
+					<div class="control-top-right">
+						<button class="btn-blue" id="mainScanBtn" onclick="startScan()">Live Analyze</button>
+						<div class="icon-actions">
+							<span title="Refresh" onclick="resetLiveView()">⟳</span>
+							<span title="Export JSON" onclick="downloadReport()">⭳</span>
+							<span title="Export CBOM" onclick="downloadCBOM()">📦</span>
+							<span>⋮</span>
+						</div>
+					</div>
+				</div>
+				<div class="control-bottom">
+					<div class="input-group">
+						<span class="input-label">Target Asset</span>
+						<input type="text" id="target" class="target-input" placeholder="example.com">
+					</div>
+					<div class="input-group">
+						<span class="input-label">Port</span>
+						<input type="text" id="port" class="target-input port-input" value="443">
+					</div>
+					<div class="input-group">
+						<span class="input-label">Scan Mode</span>
+						<select id="mode" class="mode-select">
+							<option value="full">Full PQC Audit</option>
+							<option value="quick">Quick Check</option>
+							<option value="kem">KEM Focus</option>
+							<option value="sig">Signature Focus</option>
+							<option value="classical">Classical Ciphers</option>
+						</select>
+					</div>
+				</div>
+				<div class="chips-bar" id="chips"></div>
+			</div>
+			<div id="loader">
+				<div class="ibm-spin"></div>
+				<div class="loader-host" id="loaderStatus">INITIATING LIVE SCAN...</div>
+				<div class="log-overlay" id="scanLog"></div>
+			</div>
+			
+			<!-- DASHBOARD GRID -->
+			<div class="dashboard-grid">
+				<div class="panel card-1">
+					<div class="panel-header">
+						<h3 class="panel-title">Cipher Strength</h3>
+						<span class="panel-icons">↗ ⋮</span>
+					</div>
+					<div class="chart-wrap">
+						<canvas id="chart1"></canvas>
+						<div class="chart-center">
+							<div class="chart-num" id="scoreVal">—</div>
+							<div class="chart-lbl">Security Score</div>
+						</div>
+					</div>
+					<div class="legend-row">
+						<div class="legend-item">
+							<div class="box" style="background:var(--green)"></div>
+							Quantum Safe</div>
+						<div class="legend-item">
+							<div class="box" style="background:var(--yellow)"></div>
+							Partial</div>
+						<div class="legend-item">
+							<div class="box" style="background:var(--red)"></div>
+							Vulnerable</div>
+					</div>
+				</div>
+				<div class="panel card-2">
+					<div class="panel-header">
+						<h3 class="panel-title">Protocol Versions</h3>
+						<span class="panel-icons">↗ ⋮</span>
+					</div>
+					<div class="chart-wrap">
+						<canvas id="chart2"></canvas>
+						<div class="chart-center">
+							<div class="chart-num" id="protocolVal">—</div>
+							<div class="chart-lbl" id="protocolLbl">TLS Version</div>
+						</div>
+					</div>
+					<div class="legend-row">
+						<div class="legend-item">
+							<div class="box" style="background:var(--teal)"></div>
+							TLS 1.3</div>
+						<div class="legend-item">
+							<div class="box" style="background:var(--purple)"></div>
+							TLS 1.2</div>
+						<div class="legend-item">
+							<div class="box" style="background:var(--red)"></div>
+							Legacy</div>
+					</div>
+				</div>
+				<div class="panel card-3">
+					<div class="panel-header">
+						<h3 class="panel-title">Key Exchange</h3>
+						<span class="panel-icons">↗ ⋮</span>
+					</div>
+					<div class="chart-wrap">
+						<canvas id="chart3"></canvas>
+						<div class="chart-center">
+							<div class="chart-num" id="kemVal">KEM</div>
+							<div class="chart-lbl" id="kemLbl">Probing...</div>
+						</div>
+					</div>
+					<div class="legend-row">
+						<div class="legend-item">
+							<div class="box" style="background:var(--purple)"></div>
+							PQC</div>
+						<div class="legend-item">
+							<div class="box" style="background:var(--cyan)"></div>
+							Hybrid</div>
+						<div class="legend-item">
+							<div class="box" style="background:var(--red)"></div>
+							Classical</div>
+					</div>
+				</div>
+				<div class="panel card-4">
+					<div class="panel-header" style="margin-bottom:8px">
+						<h3 class="panel-title">Policy Compliance</h3>
+						<span class="panel-icons">⟳ ⋮</span>
+					</div>
+					<div class="table-subtext" id="currentDate"></div>
+					<table class="policy-table">
+						<thead>
+							<tr>
+								<th>Policy</th>
+								<th>Time</th>
+								<th>Status</th>
+								<th>Severity</th>
+							</tr>
+						</thead>
+						<tbody id="policyTable">
+							<tr>
+								<td colspan="4" style="text-align:center;color:var(--muted);padding:32px;font-size:12px">Run live scan to populate</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="panel card-5">
+					<div class="panel-header">
+						<h3 class="panel-title">Cryptographic Posture — Vulnerability Trend</h3>
+						<span class="panel-icons">✎ ⋮</span>
+					</div>
+					<div class="table-subtext">Historical risk exposure</div>
+					<div style="height:140px;width:100%">
+						<canvas id="barChart"></canvas>
+					</div>
+				</div>
+			</div>
+			
+			<!-- RESULTS -->
+			<div class="results-wrap" id="results">
+				<div class="results-header">
+					<div>
+						<div class="results-title">▸ LIVE SCAN RESULTS</div>
+						<div class="results-host" id="resultsHost"></div>
+						<div class="live-result-badge">
+							<div class="live-dot"></div>
+							LIVE · BACKEND-POWERED · REAL TLS DATA</div>
+						<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-top:6px" id="resultsMeta"></div>
+					</div>
+					<div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px">
+						<div>
+							<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);text-align:right;margin-bottom:6px">PQC READINESS</div>
+							<div id="gradeCircle" class="grade-circle grade-F">
+								<div class="grade-val" id="gradeVal">—</div>
+								<div class="grade-lbl">GRADE</div>
+							</div>
+						</div>
+						<div id="pqcLabelWrap" style="display:none">
+							<div id="pqcLabelBadge" class="pqc-label-badge"></div>
+						</div>
+					</div>
+				</div>
+				<div class="stats-row" id="statsRow"></div>
+				<div id="riskBreakdownPanel" class="risk-breakdown" style="display:none">
+					<div class="risk-breakdown-head">
+						<div class="section-head" style="margin-top:0">RISK SCORE BREAKDOWN</div>
+						<div id="riskScoreEquation" class="risk-equation"></div>
+					</div>
+					<div class="risk-breakdown-grid">
+						<div class="risk-category-panel">
+							<div class="risk-subtitle">Category Deductions</div>
+							<div id="riskCategoryBars" class="risk-bars"></div>
+						</div>
+						<div class="risk-findings-panel">
+							<div class="risk-subtitle">Penalty Findings</div>
+							<div id="riskFindingsList" class="risk-findings-list"></div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Action buttons -->
+				<div class="action-bar" id="actionBar" style="display:none">
+					<button class="action-btn" onclick="downloadCBOM()">📦 Download CBOM</button>
+					<button class="action-btn" onclick="downloadCert()" id="certBtn">🏆 Get PQC Certificate</button>
+					<button class="action-btn" onclick="downloadReport()">⭳ Export JSON</button>
+				</div>
+				<div class="ai-analysis" id="summaryBox" style="display:none">
+					<div class="ai-analysis-head">
+						<span>🔍</span>
+						SCANNER — LIVE TLS ANALYSIS</div>
+					<div class="ai-analysis-body" id="summaryText"></div>
+				</div>
+				<div class="ai-analysis" id="scoreExplainBox" style="display:none">
+					<div class="ai-analysis-head">
+						<span>▣</span>
+						WHY THIS SCORE</div>
+					<div class="ai-analysis-body" id="scoreExplainText"></div>
+				</div>
+				<div id="rawBox" style="display:none">
+					<div class="section-head">RAW TLS PROBE DATA</div>
+					<div class="raw-box">
+						<pre id="rawData"></pre>
+					</div>
+				</div>
+				
+				<!-- CBOM Panel -->
+				<div id="cbomPanel" style="display:none">
+					<div class="section-head">CRYPTOGRAPHIC BILL OF MATERIALS (CBOM)
+						<span style="font-size:10px;color:var(--muted)">CycloneDX 1.6 | NIST SP 800-235</span>
+					</div>
+					<div class="cbom-grid" id="cbomGrid"></div>
+				</div>
+				<div class="section-head">FINDINGS</div>
+				<div class="findings-grid" id="findingsGrid"></div>
+				<div class="tbl-section">
+					<div class="tbl-head">CIPHER SUITE ANALYSIS</div>
+					<table class="atbl">
+						<thead>
+							<tr>
+								<th>CIPHER / ALGORITHM</th>
+								<th>TYPE</th>
+								<th>NIST STATUS</th>
+								<th>SEC LEVEL</th>
+								<th>STATUS</th>
+							</tr>
+						</thead>
+						<tbody id="cipherTable"></tbody>
+					</table>
+				</div>
+				<div class="tbl-section">
+					<div class="tbl-head">KEY EXCHANGE DETAILS</div>
+					<table class="atbl">
+						<thead>
+							<tr>
+								<th>MECHANISM</th>
+								<th>STANDARD</th>
+								<th>KEY SIZE</th>
+								<th>QUANTUM SAFE</th>
+								<th>RECOMMENDATION</th>
+							</tr>
+						</thead>
+						<tbody id="kemTable"></tbody>
+					</table>
+				</div>
+				<div class="tbl-section" id="certSection" style="display:none">
+					<div class="tbl-head">CERTIFICATE DETAILS</div>
+					<table class="atbl">
+						<thead>
+							<tr>
+								<th>FIELD</th>
+								<th>VALUE</th>
+							</tr>
+						</thead>
+						<tbody id="certTable"></tbody>
+					</table>
+				</div>
+				
+				<!-- Remediation Plan -->
+				<div id="remediationPanel" style="display:none">
+					<div class="section-head">REMEDIATION PLAN
+						<span style="font-size:14px;color:var(--orange)">ACTION REQUIRED</span>
+					</div>
+					<div id="remediationGrid" class="findings-grid"></div>
+				</div>
+
+				<!-- v1.0.0 ADVANCED INTELLIGENCE PANELS -->
+				<div id="advancedIntelPanel" style="display:none">
+					
+					<!-- CVE Intelligence -->
+					<div class="section-head" style="margin-top:24px"> CVE VULNERABILITY INTELLIGENCE
+						<span style="font-size:11px;color:var(--red)" id="cveCount"></span>
+					</div>
+					<div id="cveGrid" class="findings-grid"></div>
+
+					<!-- HNDL Quantum Threat Timeline -->
+					<div class="section-head" style="margin-top:24px"> HARVEST-NOW-DECRYPT-LATER (HNDL) THREAT TIMELINE
+						<span style="font-size:11px;color:var(--orange)" id="hndlVerdict"></span>
+					</div>
+					<div id="hndlPanel" class="intel-panel"></div>
+
+					<!-- Security Headers Audit -->
+					<div class="section-head" style="margin-top:24px"> HTTP SECURITY HEADERS AUDIT
+						<span style="font-size:11px;color:var(--teal)" id="headerGrade"></span>
+					</div>
+					<div id="headersGrid" class="intel-panel"></div>
+
+					<!-- Crypto Agility Score -->
+					<div class="section-head" style="margin-top:24px"> CRYPTO AGILITY SCORE — PQC Migration Readiness
+						<span style="font-size:11px;color:var(--cyan)" id="agilityGrade"></span>
+					</div>
+					<div id="agilityPanel" class="intel-panel"></div>
+
+					<!-- Regulatory Compliance Mapping -->
+					<div class="section-head" style="margin-top:24px"> REGULATORY COMPLIANCE MAPPING
+						<span style="font-size:11px;color:var(--purple)">RBI · CERT-In · PCI-DSS · ISO 27001 · NIST · SEBI</span>
+					</div>
+					<div id="complianceGrid" class="intel-panel"></div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- TAB: BULK SCAN -->
+		<div id="tab-bulk" class="tab-content" style="display:none">
+			<div class="control-bar">
+				<div class="control-top">
+					<span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--teal)">BULK TARGET SCANNER</span>
+					<div class="control-top-right">
+						<button class="btn-blue" onclick="startBulkScan()">Scan All Targets</button>
+					</div>
+				</div>
+				<div class="bulk-input-wrap">
+					<div class="input-group" style="flex:1">
+						<span class="input-label">Targets (one per line, max 20)</span>
+						<textarea id="bulkTargets" class="bulk-textarea" placeholder="google.com
+cloudflare.com
+github.com
+microsoft.com"></textarea>
+					</div>
+					<div style="display:flex;flex-direction:column;gap:12px;min-width:160px">
+						<div class="input-group">
+							<span class="input-label">Port</span>
+							<input type="text" id="bulkPort" class="target-input" value="443">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="bulkLoader" style="display:none">
+				<div class="ibm-spin"></div>
+				<div class="loader-host">SCANNING ALL TARGETS...</div>
+			</div>
+			<div id="bulkResults"></div>
+		</div>
+		
+		<!-- TAB: ASSET DISCOVERY -->
+		<div id="tab-discovery" class="tab-content" style="display:none">
+			<div class="control-bar">
+				<div class="control-top">
+					<span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--teal)">ASSET DISCOVERY — Subdomain Enumeration & TLS Scan</span>
+					<div class="control-top-right">
+						<button class="btn-blue" id="discoveryBtn" onclick="startDiscovery()">Discover Assets</button>
+					</div>
+				</div>
+				<div class="control-bottom">
+					<div class="input-group" style="flex:1">
+						<span class="input-label">Root Domain</span>
+						<input type="text" id="discoveryDomain" class="target-input" placeholder="pnb.bank.in">
+					</div>
+				</div>
+			</div>
+			<div id="discoveryLoader" style="display:none">
+				<div class="ibm-spin"></div>
+				<div class="loader-host" id="discoveryLoaderStatus">DISCOVERING SUBDOMAINS & SCANNING TLS...</div>
+			</div>
+			<div id="discoveryResults" style="display:none">
+				<!-- Summary stats -->
+				<div class="stats-row" id="discoveryStats"></div>
+				<!-- Sub-tabs for Domains/SSL/IP/Software -->
+				<div class="disc-tab-bar">
+					<button class="disc-tab active" onclick="switchDiscTab('domains',this)" id="discTabDomains">Domains (<span id="discDomainCount">0</span>)</button>
+					<button class="disc-tab" onclick="switchDiscTab('ssl',this)" id="discTabSSL">SSL (<span id="discSSLCount">0</span>)</button>
+					<button class="disc-tab" onclick="switchDiscTab('ip',this)" id="discTabIP">IP Address/Subnets (<span id="discIPCount">0</span>)</button>
+					<button class="disc-tab" onclick="switchDiscTab('software',this)" id="discTabSW">Software (<span id="discSWCount">0</span>)</button>
+				</div>
+				<!-- Filter sub-tabs -->
+				<div class="disc-filter-bar" id="discFilterBar">
+					<button class="disc-filter active" onclick="filterDiscData('new',this)">New (<span id="discFilterNew">0</span>)</button>
+					<button class="disc-filter" onclick="filterDiscData('false_positive',this)">False Positive (<span id="discFilterFP">0</span>)</button>
+					<button class="disc-filter" onclick="filterDiscData('confirmed',this)">Confirmed (<span id="discFilterConf">0</span>)</button>
+					<button class="disc-filter" onclick="filterDiscData('all',this)">All (<span id="discFilterAll">0</span>)</button>
+				</div>
+				<!-- Data table -->
+				<div class="tbl-section" style="margin-top:0">
+					<div id="discoveryTableWrap">
+						<table class="atbl" id="discoveryTable">
+							<thead id="discoveryTableHead"></thead>
+							<tbody id="discoveryTableBody"></tbody>
+						</table>
+					</div>
+				</div>
+				<!-- Per-subdomain scan results -->
+				<div id="discScanDetails" style="display:none">
+					<div class="section-head">SUBDOMAIN TLS SCAN RESULTS</div>
+					<div id="discScanGrid" class="findings-grid"></div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- TAB: CBOM -->
+		<div id="tab-cbom" class="tab-content" style="display:none">
+			<div class="control-bar">
+				<div class="control-top">
+					<span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--teal)">CBOM EXPORT — Cryptographic Bill of Materials</span>
+					<div class="control-top-right">
+						<button class="btn-blue" onclick="exportCBOM()">Generate CBOM</button>
+					</div>
+				</div>
+				<div class="control-bottom">
+					<div class="input-group">
+						<span class="input-label">Target</span>
+						<input type="text" id="cbomTarget" class="target-input" placeholder="example.com">
+					</div>
+					<div class="input-group">
+						<span class="input-label">Port</span>
+						<input type="text" id="cbomPort" class="target-input port-input" value="443">
+					</div>
+				</div>
+			</div>
+			<div id="cbomExportBox" style="display:none">
+				<div class="section-head">CBOM RESULT</div>
+				<div class="raw-box">
+					<pre id="cbomExportData" style="max-height:600px;overflow:auto"></pre>
+				</div>
+				<button class="btn-blue" style="margin:16px 32px" onclick="saveCBOM()">⭳ Save CBOM JSON</button>
+			</div>
+		</div>
+		
+		<!-- TAB: CERTIFICATE -->
+		<div id="tab-cert" class="tab-content" style="display:none">
+			<div class="control-bar">
+				<div class="control-top">
+					<span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--teal)">PQC COMPLIANCE CERTIFICATE — NIST FIPS 203/204/205</span>
+					<div class="control-top-right">
+						<button class="btn-blue" onclick="generateCert()">Generate Certificate</button>
+					</div>
+				</div>
+				<div class="control-bottom">
+					<div class="input-group">
+						<span class="input-label">Target Asset</span>
+						<input type="text" id="certTarget" class="target-input" placeholder="cloudflare.com">
+					</div>
+					<div class="input-group">
+						<span class="input-label">Port</span>
+						<input type="text" id="certPort" class="target-input port-input" value="443">
+					</div>
+				</div>
+			</div>
+			<div class="cert-info-box">
+				<div class="cert-icon">🏆</div>
+				<div>
+					<div style="font-size:16px;font-weight:600;color:var(--green)">Post Quantum Cryptography (PQC) Ready Certificate</div>
+					<div style="font-size:12px;color:var(--text2);margin-top:4px">
+						Automatically awarded to assets that implement NIST-standardized PQC algorithms.           Provides immediate assurance that the system is shielded against future quantum threats.
+					</div>
+					<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+						<span class="ibm-badge pqc">FIPS 203 — ML-KEM</span>
+						<span class="ibm-badge nist">FIPS 204 — ML-DSA</span>
+						<span class="ibm-badge live-badge">FIPS 205 — SLH-DSA</span>
+					</div>
+				</div>
+			</div>
+			<div id="certStatusBox" style="display:none">
+				<div class="section-head">CERTIFICATE STATUS</div>
+				<div id="certStatusContent"></div>
+			</div>
+		</div>
+		<!-- TAB: REPORTING -->
+		<div id="tab-reporting" class="tab-content" style="display:none">
+			<div class="control-bar">
+				<div class="control-top">
+					<span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--teal)">REPORTING ENGINE — Executive · Scheduled · On-Demand</span>
+				</div>
+			</div>
+			<!-- Report type selector -->
+			<div class="report-type-row">
+				<div class="report-type-card" data-report-type="executive" onclick="showReportPanel('executive')">
+					<div class="report-type-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="10" width="48" height="44" rx="8" fill="none" stroke="currentColor" stroke-width="3"></rect><path d="M18 42h28M18 34h18M18 26h12" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path><circle cx="45" cy="24" r="5" fill="currentColor"></circle></svg></div>
+					<div class="report-type-title">Executive Reporting</div>
+					<div class="report-type-desc">High-level security posture summary</div>
+				</div>
+				<div class="report-type-card" data-report-type="scheduled" onclick="showReportPanel('scheduled')">
+					<div class="report-type-icon">📅</div>
+					<div class="report-type-title">Scheduled Reporting</div>
+					<div class="report-type-desc">Automated periodic reports</div>
+				</div>
+				<div class="report-type-card" data-report-type="ondemand" onclick="showReportPanel('ondemand')">
+					<div class="report-type-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="22" fill="none" stroke="currentColor" stroke-width="3"></circle><path d="M32 18v14l10 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="32" cy="32" r="3" fill="currentColor"></circle></svg></div>
+					<div class="report-type-title">On-Demand Reporting</div>
+					<div class="report-type-desc">Request reports as needed</div>
+				</div>
+			</div>
+
+			<!-- Executive Report Panel -->
+			<div id="reportPanel-executive" class="report-panel" style="display:none">
+				<div class="section-head">EXECUTIVE REPORT</div>
+				<div class="control-bar" style="margin-top:8px">
+					<div class="control-bottom">
+						<div class="input-group" style="flex:1">
+							<span class="input-label">Targets (one per line)</span>
+							<textarea id="execReportTargets" class="bulk-textarea" style="height:80px" placeholder="google.com&#10;cloudflare.com&#10;github.com"></textarea>
+						</div>
+					</div>
+					<div style="padding:8px 16px">
+						<button class="btn-blue" onclick="generateExecReport()">Generate Executive Report</button>
+					</div>
+				</div>
+				<div id="execReportLoader" style="display:none">
+					<div class="ibm-spin"></div>
+					<div class="loader-host">GENERATING EXECUTIVE REPORT...</div>
+				</div>
+				<div id="execReportResults" style="display:none"></div>
+				<div class="section-head" style="margin-top:20px">REPORT HISTORY</div>
+				<div id="reportHistoryList" style="margin-top:8px"></div>
+			</div>
+
+			<!-- Scheduled Report Panel -->
+			<div id="reportPanel-scheduled" class="report-panel" style="display:none">
+				<div class="section-head">SCHEDULE REPORTING</div>
+				<div class="control-bar" style="margin-top:8px">
+					<div class="control-bottom" style="flex-wrap:wrap;gap:12px">
+						<div class="input-group">
+							<span class="input-label">Report Type</span>
+							<select id="schedReportType" class="mode-select">
+								<option value="executive">Executive Summary Report</option>
+							</select>
+						</div>
+						<div class="input-group">
+							<span class="input-label">Frequency</span>
+							<input type="hidden" id="schedFrequency" value="weekly">
+							<div class="pill-chip-row" id="schedFrequencyChips">
+								<button class="pill-chip" onclick="setSchedFrequency('daily', this)">Daily</button>
+								<button class="pill-chip active" onclick="setSchedFrequency('weekly', this)">Weekly</button>
+								<button class="pill-chip" onclick="setSchedFrequency('monthly', this)">Monthly</button>
+								<button class="pill-chip" onclick="setSchedFrequency('quarterly', this)">Quarterly</button>
+							</div>
+						</div>
+						<div class="input-group">
+							<span class="input-label">Email</span>
+							<input type="text" id="schedEmail" class="target-input" placeholder="executives@org.com">
+						</div>
+						<div class="input-group">
+							<span class="input-label">Timezone</span>
+							<input type="text" id="schedTimezone" class="target-input" value="UTC">
+						</div>
+					</div>
+					<div class="control-bottom">
+						<div class="input-group" style="flex:1">
+							<span class="input-label">Targets (one per line)</span>
+							<textarea id="schedTargets" class="bulk-textarea" style="height:60px" placeholder="pnb.bank.in&#10;portal.company.com"></textarea>
+						</div>
+					</div>
+					<div style="padding:8px 16px">
+						<button class="btn-blue" onclick="scheduleReport()">Schedule Report →</button>
+					</div>
+				</div>
+				<div id="schedReportStatus" style="display:none"></div>
+				<div class="section-head" style="margin-top:20px">ACTIVE SCHEDULES</div>
+				<div id="schedList" style="margin-top:8px"></div>
+			</div>
+
+			<!-- On-Demand Report Panel -->
+			<div id="reportPanel-ondemand" class="report-panel" style="display:none">
+				<div class="section-head">ON-DEMAND REPORTING — Request reports as needed</div>
+				<div class="control-bar" style="margin-top:8px">
+					<div class="control-bottom" style="flex-wrap:wrap;gap:12px">
+						<div class="input-group">
+							<span class="input-label">File Format</span>
+							<select id="odFormat" class="mode-select">
+								<option value="json">JSON</option>
+							</select>
+						</div>
+					</div>
+					<div class="control-bottom">
+						<div class="input-group" style="flex:1">
+							<span class="input-label">Targets (one per line)</span>
+							<textarea id="odTargets" class="bulk-textarea" style="height:80px" placeholder="google.com&#10;cloudflare.com"></textarea>
+						</div>
+					</div>
+					<div class="control-bottom">
+						<div class="input-group" style="flex:1">
+							<span class="input-label">Historical Scan IDs (optional, comma separated)</span>
+							<input type="text" id="odScanIds" class="target-input" placeholder="14, 21, 37">
+						</div>
+					</div>
+					<div style="padding:8px 16px">
+						<button class="btn-blue" onclick="generateOnDemandReport()">Generate Report</button>
+					</div>
+				</div>
+				<div id="odReportLoader" style="display:none">
+					<div class="ibm-spin"></div>
+					<div class="loader-host">GENERATING ON-DEMAND REPORT...</div>
+				</div>
+				<div class="section-head" style="margin-top:16px">AVAILABLE SCANS FOR COMPARISON</div>
+				<div id="odScanHistoryList" style="margin-top:8px"></div>
+				<div id="odReportResults" style="display:none"></div>
+			</div>
+		</div>
+		<!-- TAB: SCAN HISTORY -->
+		<div id="tab-history" class="tab-content" style="display:none">
+			<div class="control-bar">
+				<div class="control-top">
+					<span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--teal)">SCAN HISTORY — Your previous scans (login required)</span>
+					<div class="control-top-right">
+						<button class="btn-blue" onclick="loadHistory()">Refresh</button>
+						<button class="btn-blue" onclick="clearHistory()" style="background:#da1e28">Clear All</button>
+					</div>
+				</div>
+			</div>
+			<div id="historyLoginMsg" style="padding:40px;text-align:center;color:var(--text2);font-size:14px">
+				<div style="font-size:40px;margin-bottom:12px">🔒</div>
+				<div style="margin-bottom:8px">Please <span onclick="showAuthModal()" style="color:var(--teal);cursor:pointer;text-decoration:underline">login</span> to view your scan history.</div>
+				<div style="font-size:12px;color:var(--muted)">All scans performed while logged in are automatically saved.</div>
+			</div>
+			<div id="historyContent" style="display:none">
+				<div id="historyStats" style="display:flex;gap:12px;padding:12px 0;flex-wrap:wrap"></div>
+				<div style="overflow-x:auto">
+					<table class="policy-table" style="width:100%">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Target</th>
+								<th>Port</th>
+								<th>Score</th>
+								<th>Grade</th>
+								<th>PQC</th>
+								<th>TLS</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody id="historyTableBody"></tbody>
+					</table>
+				</div>
+				<div id="historyEmpty" style="display:none;padding:40px;text-align:center;color:var(--text2)">
+					<div style="font-size:32px;margin-bottom:8px">📭</div>
+					No scans yet. Run a scan from the Single Scan tab to get started.
+				</div>
+			</div>
+		</div>
+		<footer>
+			<span class="footer-brand">AegisGuard® | Quantum-Safe PQC Scanner</span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span>NIST FIPS 203 · FIPS 204 · FIPS 205 · CycloneDX CBOM · Real TLS Backend Scanner</span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span>Designed for Financial Institutions · Future-Proof Your Crypto Posture</span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span>© 2026 AegisGuard Inc. All rights reserved.</span>
+			<span style="color:var(--muted)"></span>
+		</footer>
+	</body>
+</html>
