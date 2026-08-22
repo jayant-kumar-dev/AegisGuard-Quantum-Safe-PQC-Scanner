@@ -219,23 +219,6 @@ All measured targets are public-facing endpoints of identifiable organisations. 
 
 ---
 
-## Citation
-
-```bibtex
-@misc{kumar2026aegisguard,
-  author    = {Kumar, Jayant and Soni, Nitin},
-  title     = {{AegisGuard}: An Empirical Framework for Assessing
-               Post-Quantum Readiness in Public-Facing {TLS} Infrastructure},
-  year      = {2026},
-  publisher = {Zenodo},
-  doi       = {10.5281/zenodo.XXXXXXXX}
-}
-```
-
-See `CITATION.cff` for machine-readable metadata. *(Replace the DOI placeholder once the Zenodo record is minted.)*
-
----
-
 ## Authors
 
 **Jayant Kumar** (corresponding) — conceptualization, implementation, measurement, analysis
@@ -243,6 +226,4 @@ See `CITATION.cff` for machine-readable metadata. *(Replace the DOI placeholder 
 
 Department of Computer Applications, Sobhasaria Group of Institutions, Sikar, Rajasthan, India
 
-## License
 
-*(Set this — `CITATION.cff` currently declares MIT. Update both to match.)*
