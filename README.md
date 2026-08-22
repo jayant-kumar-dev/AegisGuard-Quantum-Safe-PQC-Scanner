@@ -6,7 +6,7 @@
 
 AegisGuard is a non-intrusive TLS/PQC measurement tool built around one constraint: a scanner that cannot observe the negotiated key-exchange group must say so, rather than reporting the absence of evidence as evidence of weakness.
 
-📄 **Paper** · 📊 **400 endpoints measured** · 🔬 **All per-endpoint records released**
+ **Paper** ·  **400 endpoints measured** ·  **All per-endpoint records released**
 
 ---
 
